@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>wysiwyg</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="./ckeditor/adapters/jquery.js"></script>
+
+    <script>
+        $(function() {
+            $( 'textarea.editor' ).ckeditor(
+                $.noop, /* callback then ckeditor is ready */
+                {} /* settings: see here http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html */
+            );
+        });
+    </script>
+
+</head>
+<body>
+
+    <textarea class="editor"></textarea>
+
+</body>
+</html>
