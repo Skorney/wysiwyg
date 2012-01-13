@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config )
             { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
             { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
             { name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'
-                ,'Iframe' ] },
+                ,'Iframe', 'ImageDialogButton' ] },
             '/',
             { name: 'styles', items : [ 'Styles','Format' ] },
             { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
