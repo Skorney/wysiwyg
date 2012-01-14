@@ -10,119 +10,16 @@
 
     <script>
 
-        // When opening a dialog, its "definition" is created for it, for
-        // each editor instance. The "dialogDefinition" event is then
-        // fired. We should use this event to make customizations to the
-        // definition of existing dialogs.
-        CKEDITOR.on( 'dialogDefinition', function( ev )
-        {
-            // Take the dialog name and its definition from the event
-            // data.
-            var dialogName = ev.data.name;
-            var dialogDefinition = ev.data.definition;
-
-            // Check if the definition is from the dialog we're
-            // interested on (the "Link" dialog).
-            if ( dialogName == 'insert' )
-            {
-
-                alert('sasda');
-                // Get a reference to the "Link Info" tab.
-                var infoTab = dialogDefinition.getContents( 'info' );
-
-                // Add a text field to the "info" tab.
-                infoTab.add( {
-                    type : 'text',
-                    label : 'My Custom Field',
-                    id : 'customField',
-                    'default' : 'Sample!',
-                    validate : function()
-                    {
-                        if ( /\d/.test( this.getValue() ) )
-                            return 'My Custom Field must not contain digits';
-                    }
-                });
-
-                // Remove the "Link Type" combo and the "Browser
-                // Server" button from the "info" tab.
-                infoTab.remove( 'linkType' );
-                infoTab.remove( 'browse' );
-
-                // Set the default value for the URL field.
-                var urlField = infoTab.get( 'url' );
-                urlField['default'] = 'www.example.com';
-
-                // Remove the "Target" tab from the "Link" dialog.
-                dialogDefinition.removeContents( 'target' );
-
-                // Add a new tab to the "Link" dialog.
-                dialogDefinition.addContents({
-                    id : 'customTab',
-                    label : 'My Tab',
-                    accessKey : 'M',
-                    elements : [
-                        {
-                            id : 'myField1',
-                            type : 'text',
-                            label : 'My Text Field'
-                        },
-                        {
-                            id : 'myField2',
-                            type : 'text',
-                            label : 'Another Text Field'
-                        }
-                    ]
-                });
-
-                // Rewrite the 'onFocus' handler to always focus 'url' field.
-                dialogDefinition.onFocus = function()
-                {
-                    var urlField = this.getContentElement( 'info', 'url' );
-                    urlField.select();
-                };
-            }
-        });
-
         $(function() {
 
-            var editor = $( 'textarea.editor' ).ckeditor(
+            $( 'textarea.editor' ).ckeditor(
                 $.noop, /* callback then ckeditor is ready */
                 {
                     customConfig : 'custom/ckeditor_config.js', // custom config
                     toolbar : 'Custom'
 
                 } /* settings: see here http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html */
-            ).ckeditorGet();
-
-            editor.on( 'pluginsLoaded', function( ev )
-            {
-                // If our custom dialog has not been registered, do that now.
-                if ( !CKEDITOR.dialog.exists( 'imageDialog' ) )
-                {
-                    // We need to do the following trick to find out the dialog
-                    // definition file URL path. In the real world, you would simply
-                    // point to an absolute path directly, like "/mydir/mydialog.js".
-                    var href = document.location.href.split( '/' );
-                    href.pop();
-                    href.push( 'ckeditor/custom/plugins/imagedialog', 'imagedialog.js' );
-                    href = href.join( '/' );
-
-                    // Finally, register the dialog.
-                    CKEDITOR.dialog.add( 'imageDialog', href );
-                }
-
-                // Register the command used to open the dialog.
-                editor.addCommand( 'imageDialogCmd', new CKEDITOR.dialogCommand( 'imageDialog' ) );
-
-                // Add the a custom toolbar buttons, which fires the above
-                // command..
-                editor.ui.addButton( 'ImageDialogButton',
-                        {
-                            label : 'Image Dialog',
-                            command : 'imageDialogCmd'
-                        } );
-            });
-
+            );
 
         });
     </script>

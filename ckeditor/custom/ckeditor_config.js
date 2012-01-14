@@ -1,5 +1,7 @@
 CKEDITOR.editorConfig = function( config )
 {
+    //подключаем пользовательские plugins
+    config.extraPlugins = 'popupimage';
 
     config.toolbar = 'Custom';
     config.toolbar_Custom =
@@ -8,7 +10,7 @@ CKEDITOR.editorConfig = function( config )
             { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
             { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
             { name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'
-                ,'Iframe', 'ImageDialogButton' ] },
+                ,'Iframe', 'PopupImage' ] },
             '/',
             { name: 'styles', items : [ 'Styles','Format' ] },
             { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
