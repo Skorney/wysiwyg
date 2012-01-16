@@ -1,9 +1,4 @@
-﻿/*
-Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
-*/
-
-/**
+﻿/**
  * @file PopupImage plugin
  */
 
@@ -31,7 +26,7 @@ CKEDITOR.plugins.add( 'popupimage',
 				var element = evt.data.element;
 
 				if ( element.is( 'img' ) && !element.data( 'cke-realelement' ) && !element.isReadOnly() )
-					evt.data.dialog = 'image';
+					evt.data.dialog = 'popupimage';
 			});
 
 		// If the "menu" plugin is loaded, register the menu items.
