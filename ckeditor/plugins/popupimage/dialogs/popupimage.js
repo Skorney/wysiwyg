@@ -426,12 +426,6 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 				this.commitContent( IMAGE, this.imageElement );
 				this.commitContent( LINK, this.linkElement );
 
-                //при обновлении информации об изображении
-                if ( $(this.imageElement.$.parentNode).attr('rel') == 'prettyPhoto' ) {
-                    alert(this.getValueOf( 'info', 'txtUrl2' ));
-                    $(this.imageElement.$).parent().attr('href', this.getValueOf( 'info', 'txtUrl2' ));
-                }
-
 				// Remove empty style attribute.
 				if ( !this.imageElement.getAttribute( 'style' ) )
 					this.imageElement.removeAttribute( 'style' );
@@ -472,7 +466,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
                         tbody.getElementsByTag( 'td' ).getItem( 0 ).$.innerHTML = '';
 
                         if ( $.trim( this.getValueOf( 'info', 'txtUrl2' ) )) {
-                            var link = $('<a href="'+ this.getValueOf( 'info', 'txtUrl2' ) +'" rel="prettyPhoto" title="'+ this.getValueOf( 'info', 'txtAlt') +'"></a>').append(this.imageElement.$);
+                            var link = $('<a rel="prettyPhoto"></a>').append(this.imageElement.$);
+                            link.prop({'href' : this.getValueOf( 'info', 'txtUrl2'), 'title' : this.getValueOf( 'info', 'txtAlt')});
                             link.appendTo(tbody.getElementsByTag( 'td' ).getItem( 0 ).$);
                         }
                         else {
@@ -499,12 +494,17 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 						editor.getSelection().selectElement( this.linkElement );
 						editor.insertElement( this.imageElement );
 					}
+
+                    //при обновлении информации об изображении
+                    if ( $(this.imageElement.$.parentNode).attr('rel') == 'prettyPhoto' ) {
+                        alert('-------------');
+                        $(this.imageElement.$.parentNode).removeAttr('href');
+                        //.attr('href', this.getValueOf( 'info', 'txtUrl2' ));//.setAttribute('href2121', this.getValueOf( 'info', 'txtUrl2' ));
+                    }
 				}
 			},
 			onLoad : function()
 			{
-				if ( dialogType != 'popupimage' )
-					this.hidePage( 'Link' );		//Hide Link tab.
 				var doc = this._.element.getDocument();
 
 				if ( this.getContentElement( 'info', 'ratioLock' ) )
@@ -599,8 +599,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 													var field = this;
 
 													this.getDialog().dontResetSize = true;
-
-													field.setValue( url );		// And call this.onChange()
+                                                    // And call this.onChange()
+													field.setValue( url );
 													// Manually set the initial value.(#4191)
 													field.setInitValue();
 												}

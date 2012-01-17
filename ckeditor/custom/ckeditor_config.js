@@ -20,12 +20,12 @@ CKEDITOR.editorConfig = function( config )
         ];
 
     /* пути к скриптам для выбра*/
-    config.filebrowserBrowseUrl = './kcfinder/browse.php?type=files';
+    config.filebrowserBrowseUrl = './kcfinder/browse.php?type=files&dir=images/1';
     config.filebrowserImageBrowseUrl = './kcfinder/browse.php?type=images&dir=images/1';
     config.filebrowserFlashBrowseUrl = './kcfinder/browse.php?type=flash';
 
     /* пути к скриптам-загрузчикам */
-    config.filebrowserUploadUrl = './kcfinder/upload.php?type=files';
+    config.filebrowserUploadUrl = './kcfinder/upload.php?type=files&dir=images/1';
     config.filebrowserImageUploadUrl = './kcfinder/upload.php?type=images&dir=images/1';
     config.filebrowserFlashUploadUrl = './kcfinder/upload.php?type=flash';
 
